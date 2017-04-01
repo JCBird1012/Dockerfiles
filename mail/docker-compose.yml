@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  mail:
+    image: mail 
+    hostname: jcaicedo
+    domainname: com
+    container_name: mail 
+    ports:
+    - "25:25"
+    #- "143:143"
+    - "587:587"
+    #- "993:993"
+    #- "110:110"
+    - "995:995"
+    volumes:
+    - /home/Jonathan/Docker/nginx/ssl:/tmp/ssl:ro        
+    - /home/Jonathan/Docker/mail/mail:/var/mail
+    - /home/Jonathan/Docker/mail/mail-state:/var/mail-state
+    - /home/Jonathan/Docker/mail/config:/tmp/docker-mailserver/
+    - /tmp/logs/mail:/tmp/logs/mail
+    environment:
+    - SSL_TYPE=manual
+    - SSL_CERT_PATH=/tmp/ssl/cert-rsa.crt
+    - SSL_KEY_PATH=/tmp/ssl/key-rsa.key
+    - ENABLE_SPAMASSASSIN=0
+    - ENABLE_CLAMAV=0
+    - ENABLE_POP3=1
+    - ONE_DIR=1
+    - DMS_DEBUG=0
+    network_mode: "host"
+    restart: unless-stopped

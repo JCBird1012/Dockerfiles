@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  fail2ban:
+    image: fail2ban
+    container_name: fail2ban 
+    volumes:
+    - /home/Jonathan/Docker/fail2ban/fail2ban/:/etc/fail2ban 
+    - /tmp/logs/:/var/log/fail2ban/
+    network_mode: "host"
+    cap_add:
+    - NET_ADMIN
+    restart: unless-stopped

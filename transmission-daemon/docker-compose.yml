@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  transmission-daemon:
+    image: transmission-daemon
+    container_name: transmission-daemon
+    ports:
+    - "127.0.0.1:9091:9091"
+    - "51413:51413"
+    - "51413:51413/udp" 
+    volumes:
+    - /home/Jonathan/Docker/transmission-daemon/settings:/etc/transmission-daemon
+    - /home/Jonathan/Downloads:/transmission/downloads
+    - /home/Jonathan/Downloads:/transmission/incomplete
+    network_mode: "bridge"
+    restart: unless-stopped

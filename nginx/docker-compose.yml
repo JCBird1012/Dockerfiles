@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx 
+    container_name: nginx 
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - /home/Jonathan/Docker/nginx/nginx/:/etc/nginx/        
+    - /home/Jonathan/Docker/nginx/ssl/:/etc/ssl/nginx:ro
+    - /home/Jonathan/website/:/var/www/website
+    - /home/Jonathan/Downloads/:/var/www/Downloads
+    - /tmp/logs/nginx/:/var/log/nginx/
+    network_mode: "host"
+    restart: unless-stopped

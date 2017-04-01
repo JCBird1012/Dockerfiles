@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  ghost:
+    image: ghost 
+    container_name: ghost
+    ports:
+    - "127.0.0.1:2368:2368"
+    volumes:
+    - /home/Jonathan/Docker/ghost/ghost/:/var/lib/ghost
+    network_mode: "bridge"
+    restart: unless-stopped
