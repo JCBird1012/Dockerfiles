@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  tor-relay:
+    image: tor-relay
+    container_name: tor-relay
+    volumes:
+    - /etc/localtime:/etc/localtime
+    - /home/Jonathan/Docker/tor-relay/config/:/home/tor/.tor
+    network_mode: "host"
+    restart: unless-stopped
+    environment:
+    - 'TORRC=/etc/tor/torrc.middle'
+    - 'NICKNAME=Scipio'
+    - 'CONTACTINFO=Jonathan Elias Caicedo <Jonathan@jcaicedo.com>'

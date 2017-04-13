@@ -1,5 +1,5 @@
-FROM alpine:latest
-MAINTAINER Christian Musa <christianmusa@gmail.com>
+FROM alpine:edge
+MAINTAINER Jonathan Elias Caicedo <Jonathan@jcaicedo.com>
 
 RUN apk update && apk add fail2ban ip6tables && mkdir /var/run/fail2ban
 

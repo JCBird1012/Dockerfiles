@@ -1,8 +1,8 @@
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER Jonathan Elias Caicedo [Jonathan@jcaicedo.com]
 
-ARG NGINX_VERSION=1.11.12
-ARG LIBRESSL_VERSION=2.5.1
+ARG NGINX_VERSION=1.11.13
+ARG LIBRESSL_VERSION=2.5.3
 ENV GPG_KEYS \
   B0F4253373F8F6F510D42178520A9993A1C052F8 \
   A1EB079B8D3EB92B4EBD3139663AF51BD5E4D8D5
@@ -12,7 +12,7 @@ RUN \
   && runtime_pkgs="ca-certificates pcre zlib" \
   && apk --no-cache add ${build_pkgs} ${runtime_pkgs} \
   && for key in $GPG_KEYS; do \
-		gpg --recv-keys "$key"; \
+		gpg --keyserver pgp.mit.edu --recv-keys "$key"; \
 	done \
   && mkdir /tmp/libressl \
   && cd /tmp/libressl \

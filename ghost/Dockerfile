@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER Jonathan Elias Caicedo [Jonathan@jcaicedo.com]
 
 #ENV VARIABLES
@@ -9,7 +9,7 @@ ENV GHOST_VERSION 0.11.7
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE
 
-RUN apk --no-cache add nodejs tar tini \
+RUN apk --no-cache add nodejs nodejs-npm tar tini \
     && apk --no-cache add --virtual devs gcc make python wget unzip ca-certificates \
     && wget -O ghost.zip https://ghost.org/zip/ghost-latest.zip \
     && unzip ghost.zip \
