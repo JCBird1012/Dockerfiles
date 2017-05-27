@@ -1,14 +1,14 @@
 FROM alpine:edge
-MAINTAINER Jonathan Elias Caicedo [Jonathan@jcaicedo.com]
+LABEL maintainer="Jonathan Elias Caicedo [Jonathan@jcaicedo.com]"
 
-ARG NGINX_VERSION=1.11.13
-ARG LIBRESSL_VERSION=2.5.3
+ARG NGINX_VERSION=1.13.0
+ARG LIBRESSL_VERSION=2.5.4
 ENV GPG_KEYS \
   B0F4253373F8F6F510D42178520A9993A1C052F8 \
   A1EB079B8D3EB92B4EBD3139663AF51BD5E4D8D5
 
 RUN \
-  build_pkgs="build-base linux-headers pcre-dev curl zlib-dev gnupg" \
+  build_pkgs="build-base git linux-headers pcre-dev curl zlib-dev gnupg" \
   && runtime_pkgs="ca-certificates pcre zlib" \
   && apk --no-cache add ${build_pkgs} ${runtime_pkgs} \
   && for key in $GPG_KEYS; do \
@@ -26,6 +26,7 @@ RUN \
   && make -j $(getconf _NPROCESSORS_ONLN) \
   && mkdir -p /tmp/src \
   && cd /tmp/src \
+  && git clone https://github.com/aperezdc/ngx-fancyindex.git ngx-fancyindex \
   && curl -fSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -o nginx.tar.gz \
   && curl -fSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz.asc -o nginx.tar.gz.asc \
   && gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
@@ -60,6 +61,7 @@ RUN \
     --prefix=/etc/nginx \
     --http-log-path=/var/log/nginx/access.log \
     --error-log-path=/var/log/nginx/error.log \
+    --add-module=../ngx-fancyindex \
   && make -j $(getconf _NPROCESSORS_ONLN) \
   && make install \
   && make clean \
@@ -76,5 +78,4 @@ VOLUME ["/etc/ssl/nginx"]
 VOLUME ["/var/www/website"]
 VOLUME ["/var/www/Downloads"]
 
-EXPOSE 80 443
 CMD ["nginx"]

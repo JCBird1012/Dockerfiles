@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-MAINTAINER Jonathan Elias Caicedo [Jonathan@jcaicedo.com]
+LABEL maintainer="Jonathan Elias Caicedo [Jonathan@jcaicedo.com]"
 
 RUN apk add --update \
     transmission-daemon \

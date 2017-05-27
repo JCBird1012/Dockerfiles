@@ -1,10 +1,10 @@
 FROM alpine:edge
-MAINTAINER Jonathan Elias Caicedo [Jonathan@jcaicedo.com]
+LABEL maintainer="Jonathan Elias Caicedo [Jonathan@jcaicedo.com]"
 
 #ENV VARIABLES
 ENV GHOST_SOURCE /usr/src/app
 ENV GHOST_CONTENT /var/lib/ghost
-ENV GHOST_VERSION 0.11.7
+ENV GHOST_VERSION 0.11.9
 
 #Change WORKDIR to ghost directory
 WORKDIR $GHOST_SOURCE

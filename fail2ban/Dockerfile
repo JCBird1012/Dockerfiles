@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER Jonathan Elias Caicedo <Jonathan@jcaicedo.com>
+LABEL maintainer="Jonathan Elias Caicedo <Jonathan@jcaicedo.com>"
 
 RUN apk update && apk add fail2ban ip6tables && mkdir /var/run/fail2ban
 

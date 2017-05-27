@@ -6,13 +6,13 @@ services:
     hostname: jcaicedo
     domainname: com
     container_name: mail 
-    ports:
-    - "25:25"
+    # ports:
+    #- "25:25"
     #- "143:143"
-    - "587:587"
+    #- "587:587"
     #- "993:993"
     #- "110:110"
-    - "995:995"
+    #- "995:995"
     volumes:
     - /home/Jonathan/Docker/nginx/ssl:/tmp/ssl:ro        
     - /home/Jonathan/Docker/mail/mail:/var/mail

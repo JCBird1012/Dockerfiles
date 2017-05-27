@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  shellinabox:
+    image: shellinabox
+    container_name: shellinabox
+    ports:
+    - "127.0.0.1:4200:4200"
+    network_mode: "bridge"
+    restart: unless-stopped
